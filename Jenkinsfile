@@ -11,7 +11,7 @@ pipeline {
         stage('Set up Python') {
             steps {
                 bat """
-                python --version
+                C:\\Users\\avika\\AppData\\Local\\Programs\\Python\\Python314\\python.exe --version
                 """
             }
         }
@@ -19,9 +19,9 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 bat """
-                pip install -r requirements.txt
-                pip install allure-pytest pytest-xdist pytest-rerunfailures
-                playwright install
+                 C:\\Users\\avika\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pip install -r requirements.txt
+                 C:\\Users\\avika\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pip install allure-pytest pytest-xdist pytest-rerunfailures
+                 C:\\Users\\avika\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m playwright install
                 """
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Run tests') {
             steps {
                 bat """
-                pytest --alluredir=allure-results
+                 C:\\Users\\avika\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pytest --alluredir=allure-results
                 """
             }
         }
