@@ -1,0 +1,6 @@
+2026-06-06 15:51:08 | INFO  | loginPage.py:15 | Navigating to Login Page
+2026-06-06 15:51:13 | INFO  | loginPage.py:21 | Entering Username: Admin
+2026-06-06 15:51:14 | INFO  | loginPage.py:24 | Entering Password: admin123
+2026-06-06 15:51:14 | INFO  | loginPage.py:27 | Clicking Login Button
+2026-06-06 15:51:14 | INFO  | loginPage.py:29 | Login Successful
+2026-06-06 15:51:18 | INFO  | loginPage.py:33 | Landed on DashBoard Page
