@@ -2,38 +2,51 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Set up Python') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat """
+                python --version
+                """
             }
         }
 
-        stage('Run Tests') {
+        stage('Install dependencies') {
             steps {
-                sh 'pytest -n 2 --alluredir=allure-results'
+                bat """
+                pip install -r requirements.txt
+                pip install allure-pytest pytest-xdist pytest-rerunfailures
+                playwright install
+                """
             }
         }
-        stage('Publish Allure Report') {
+
+        stage('Run tests') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                bat """
+                pytest --alluredir=allure-results
+                """
+            }
+        }
+
+        
+
+        stage('Publish Allure report') {
+            steps {
+                allure results: [[path: 'allure-results']]
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'logs/*.log', fingerprint: true
-            archiveArtifacts artifacts: 'allure-results/**', fingerprint: true
-        }
-        failure {
-            echo "Build failed — check Allure and logs"
+            archiveArtifacts artifacts: 'logs/**/*.log', fingerprint: true, allowEmptyArchive: true
+            archiveArtifacts artifacts: 'allure-results/**', fingerprint: true, allowEmptyArchive: true
         }
     }
 }
