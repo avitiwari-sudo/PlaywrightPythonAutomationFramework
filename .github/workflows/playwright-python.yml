@@ -31,6 +31,12 @@ jobs:
     - name: Install Playwright Browsers
       run: playwright install --with-deps
 
+    - name: Install pytest plugins
+      run: |
+        pip install allure-pytest
+        pip install pytest-xdist
+        pip install pytest-rerunfailures
+
     - name: Run Tests
       run: pytest --alluredir=allure-results
 
@@ -45,6 +51,11 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Upload Logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs
+        path: logs
     # - name: Test with pytest
     #   run: |
     #     pytest
