@@ -12,9 +12,9 @@ def pytest_addoption(parser):
 
 @pytest.fixture
 def testData():
-    with open("C:/Deloitt/PlaywrightPythonAutomationFrameWork/data/testcase_variable_resource.json") as f:
-        data = json.load(f)
-    return data
+    root = Path(__file__).parent.parent
+    file_path = root / "data" / "testcase_variable_resource.json"
+    return json.loads(file_path.read_text())
 
 
 @pytest.fixture
