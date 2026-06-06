@@ -13,7 +13,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture
 def testData():
-    root = Path(__file__).parent.parent
+    root = Path.cwd()  # pytest rootdir in CI
     file_path = root / "data" / "testcase_variable_resource.json"
     return json.loads(file_path.read_text())
 
