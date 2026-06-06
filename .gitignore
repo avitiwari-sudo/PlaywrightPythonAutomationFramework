@@ -1,0 +1,62 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.db
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# -------------------------
+# Playwright
+# -------------------------
+playwright-report/
+test-results/
+blob-report/
+trace.zip
+*.webm
+*.mp4
+*.zip
+
+# -------------------------
+# Allure
+# -------------------------
+allure-results/
+allure-report/
+
+# -------------------------
+# Logs
+# -------------------------
+logs/
+*.log
+
+# -------------------------
+# IDE / Editor
+# -------------------------
+.vscode/
+.idea/
+*.iml
+
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Environment files
+# -------------------------
+.env
+.env.local
