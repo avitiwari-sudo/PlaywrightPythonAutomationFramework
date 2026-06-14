@@ -1,6 +1,6 @@
 from playwright.sync_api import expect
 import allure,pytest
-from pages.PageObjectHandler import PageObjectHandler
+from pages.All_PagesObjectHandler import PageObjectHandler
 from utils.employeeRecords import Generate_CSV
 from utils.logger import get_logger
 
