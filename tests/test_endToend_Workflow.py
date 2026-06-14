@@ -1,4 +1,5 @@
 import allure
+from numpy.matlib import empty
 from playwright.sync_api import expect
 from pages.All_PagesObjectHandler import PageObjectHandler
 from utils.logger import get_logger
@@ -52,7 +53,7 @@ def test_endToend(browserInstance, testData, logger):
         try:
             logger.info("Verifying all components After Login")
             menuItems, missing_modules = dashboardPage.verify_AllComponents(expectedModules)
-            assert not missing_modules
+            assert missing_modules == [] ,f"Unexpected modules found: {missing_modules}"
             logger.info(f"Menu List is : {menuItems}")
         except Exception as e:
             logger.error(f"Failed to get Tasks List {e}")
