@@ -1,7 +1,6 @@
 import allure
 from playwright.sync_api import expect
-
-from pages.PageObjectHandler import PageObjectHandler
+from pages.All_PagesObjectHandler import PageObjectHandler
 from utils.logger import get_logger
 
 logger = get_logger("Test End To End Workflow")
