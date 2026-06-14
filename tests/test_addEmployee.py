@@ -63,7 +63,9 @@ def test_addEmployee(browserInstance, testData, logger):
         try:
             logger.info("Add an Employee")
             empId, success_msg = PIMpage.addEmployeeAndGetID(empName["firstName"],empName["middleName"],empName["lastName"])
-            logger.info(f"Employee Details for {empName["firstName"]} {empName["lastName"]} got created with ID {empId}")
+            logger.info(
+                f"Employee Details for {empName['firstName']} {empName['lastName']} got created with ID {empId}"
+            )
             assert "Success" in success_msg
             # Store empId into existing data file
 
