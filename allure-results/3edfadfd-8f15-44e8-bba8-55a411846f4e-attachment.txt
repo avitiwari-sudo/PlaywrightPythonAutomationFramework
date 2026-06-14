@@ -1,6 +1,0 @@
-[32mINFO    [0m LoginPage:loginPage.py:12 Navigating to Login Page
-[32mINFO    [0m LoginPage:loginPage.py:18 Entering Username: Admin
-[32mINFO    [0m LoginPage:loginPage.py:21 Entering Password: admin123
-[32mINFO    [0m LoginPage:loginPage.py:24 Clicking Login Button
-[32mINFO    [0m LoginPage:loginPage.py:26 Login Successful
-[32mINFO    [0m LoginPage:loginPage.py:29 Landed on DashBoard Page

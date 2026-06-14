@@ -1,6 +1,6 @@
 import pytest,json,allure
 from pathlib import Path
-from playwright.sync_api import Playwright
+from utils.logger import get_logger
 
 @pytest.fixture(scope="session")
 def user_credentials(request):  # request is used to access both global variable env and local variables
@@ -19,10 +19,15 @@ def testData():
 
 
 @pytest.fixture
+def logger(request):
+    test_name = request.node.name
+    return get_logger(test_name)
+
+@pytest.fixture
 def browserInstance(playwright, request):
     browser_name = request.config.getoption("browser_name")
     if browser_name == "chrome":
-        browser = playwright.chromium.launch(headless=True)
+        browser = playwright.chromium.launch(headless=False)
     elif browser_name == "firefox":
         browser = playwright.firefox.launch(headless=True)
 
@@ -32,6 +37,8 @@ def browserInstance(playwright, request):
 
     context.close()
     browser.close()
+
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
