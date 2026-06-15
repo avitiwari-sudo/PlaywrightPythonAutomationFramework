@@ -14,8 +14,8 @@ def test_getEmployeeTotalCount(browserInstance,api_context,testData,logger):
             all_employees_response = employeeList.getEmployees()
             json_data_employees = all_employees_response.json()
             totalEmployeesAPI = json_data_employees['meta']['total']
-            csv_path = genCSV.generate_employee_csv()
-            totalEmployeesUI = genCSV.totalRecords(csv_path)
+            #csv_path = genCSV.generate_employee_csv()
+            totalEmployeesUI = genCSV.totalRecords(csv_path="updated_orangehrm_employees.csv")
             assert totalEmployeesAPI == totalEmployeesUI, "Total Employees are not matching"
             logger.info(f"EmployeeAPI = {totalEmployeesAPI} matching with EmployeeUI= {totalEmployeesUI}")
         except Exception as e:

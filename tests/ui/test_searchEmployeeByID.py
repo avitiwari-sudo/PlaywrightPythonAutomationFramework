@@ -63,8 +63,6 @@ def test_SearchEmployee(browserInstance, testData, logger):
         try:
             # Generate CSV first
             csv_path = genCSV.generate_employee_csv()
-
-            print(csv_path)
             logger.info(f"CSV Path = {csv_path}")
             logger.info(f"Searching for employee with ID {emp_ID}")
             record = PIMpage.searchEmployeeByID(emp_ID,csv_path)
