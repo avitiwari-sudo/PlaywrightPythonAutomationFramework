@@ -2,7 +2,6 @@ import pytest,allure
 from api.employeeAPI import EmployeeAPI
 from utils.employeeRecords import Generate_CSV
 
-@pytest.mark.order(3)
 def test_getEmployeeTotalCount(browserInstance,api_context,testData,logger):
 
     employeeList = EmployeeAPI(api_context)
