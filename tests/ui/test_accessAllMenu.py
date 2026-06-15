@@ -44,7 +44,7 @@ def test_AllModules(browserInstance, testData, logger):
             logger.info("Dashboard page is visible")
         except Exception as e:
             logger.error(f"Not Landed on Dashboard page : {e}")
-            raise
+            raise e
 
     with allure.step("Step 4: Click all menu and verify nothing is breaking"):
         try:
@@ -53,7 +53,7 @@ def test_AllModules(browserInstance, testData, logger):
             logger.info(f"Able to access all modules : {clickedItems}")
         except Exception as e:
             logger.error(f": failed to get Tasks List {e}")
-            raise
+            raise e
 
     with allure.step("Step 5: Verify Log Out"):
         try:
@@ -63,3 +63,4 @@ def test_AllModules(browserInstance, testData, logger):
             logger.info("Test Passed - All Modules were accessible")
         except Exception as e:
             logger.error(f"Failed to Logout : {e}")
+            raise e
