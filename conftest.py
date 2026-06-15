@@ -20,7 +20,6 @@ def testData():
     file_path = root / "data" / "testcase_variable_resource.json"
     return json.loads(file_path.read_text())
 
-
 @pytest.fixture
 def logger(request):
     test_name = request.node.name
@@ -42,41 +41,6 @@ def browserInstance(playwright, request):
     browser.close()
 
 # API Login using cookies
-@pytest.fixture
-def authenticated_api_context(playwright):
-
-    browser = playwright.chromium.launch()
-    page = browser.new_page()
-
-    page.goto(
-        "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
-    )
-
-    page.get_by_placeholder("Username").fill("Admin")
-    page.get_by_placeholder("Password").fill("admin123")
-    page.get_by_role("button", name="Login").click()
-
-    page.wait_for_url("**/dashboard/**")
-
-    cookies = page.context.cookies()
-
-    cookie_value = next(
-        c["value"]
-        for c in cookies
-        if "orangehrm" in c["name"].lower()
-    )
-
-    api_context = playwright.request.new_context(
-        base_url="https://opensource-demo.orangehrmlive.com",
-        extra_http_headers={
-            "Cookie": f"orangehrm={cookie_value}"
-        }
-    )
-
-    yield api_context
-
-    api_context.dispose()
-    browser.close()
 
 @pytest.fixture
 def api_context(browserInstance,playwright:Playwright,testData):
@@ -105,14 +69,6 @@ def api_context(browserInstance,playwright:Playwright,testData):
     yield api_context
 
     api_context.dispose()
-
-
-
-
-
-
-
-
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):

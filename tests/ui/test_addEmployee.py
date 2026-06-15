@@ -11,7 +11,6 @@ logger = get_logger("Test Add Employee - PIM Module")
 @allure.story("Add Employee")
 
 @pytest.mark.order(1)
-
 def test_addEmployee(browserInstance, testData, logger):
     url = testData["url"]
     username = testData["user_credentials"]["username"]

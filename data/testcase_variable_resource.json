@@ -1,15 +1,19 @@
 {
     "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
-    "user_credentials": {
+    "user_credentials": [{
         "username": "Admin",
         "password": "admin123"
     },
+      {
+        "username": "Admin123",
+        "password": "admin123"}
+    ],
     "employeeName": {
         "firstName": "Avika",
         "middleName": "G",
         "lastName": "Tiwari"
     },
-    "empId": "0601",
+    "empId": "0389",
     "expected_modules": [
         "Admin",
         "PIM",

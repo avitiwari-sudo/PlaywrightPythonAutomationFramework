@@ -5,7 +5,6 @@ from pages.locators.locators import Locators
 class LoginPage():
     def __init__(self,page:Page):
         self.page = page
-        #self.logger = get_logger(self.__class__.__name__)
 
     def navigate(self,url):
         #self.logger.info("Navigating to Login Page")

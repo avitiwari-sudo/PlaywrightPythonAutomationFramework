@@ -1,11 +1,9 @@
-import allure
+import allure,pytest
 from playwright.sync_api import expect
 from pages.All_PagesObjectHandler import PageObjectHandler
 from utils.logger import get_logger
 
 logger = get_logger("Access All Modules")
-
-
 
 def test_AllModules(browserInstance, testData, logger):
 
@@ -15,7 +13,6 @@ def test_AllModules(browserInstance, testData, logger):
     expectedModules = testData["expected_modules"]
 
     logger.info("Starting Login Test")
-
 
     # Step 1 : Login to Orange HRM
     poHandler = PageObjectHandler(browserInstance)
@@ -35,7 +32,7 @@ def test_AllModules(browserInstance, testData, logger):
             logger.info(f"Login Successful")
         except Exception as e:
             logger.error(f"Failed to Login : {e}")
-            raise
+            raise e
 
     with allure.step("Step 3: Verify User landed on Dashboard Page"):
         try:

@@ -16,9 +16,7 @@ def test_endToend(browserInstance, testData, logger):
     password = testData["user_credentials"]["password"]
     expectedModules = testData["expected_modules"]
 
-
     logger.info("Starting End To End Test")
-
 
     # Step 1 : Login to Orange HRM
     poHandler = PageObjectHandler(browserInstance)

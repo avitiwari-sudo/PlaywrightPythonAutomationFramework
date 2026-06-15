@@ -1,15 +1,10 @@
-import csv
-import time
-
 import pandas as pd
 from playwright.sync_api import expect,Page
 from pages.locators.locators import Locators
 
-
 class PIM:
     def __init__(self,page:Page):
         self.page = page
-        data = []
 
     def clickPIMModule(self):
         self.page.locator(Locators.PIM).click()
@@ -53,6 +48,9 @@ class PIM:
         if "(1)" in record:
             return record
         return "No Records Found"
+
+
+
 
 
 

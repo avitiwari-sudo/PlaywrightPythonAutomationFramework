@@ -2,34 +2,48 @@ import logging
 import os
 from datetime import datetime
 
+# Create timestamp only once when framework starts
+RUN_TIMESTAMP = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 def get_logger(name="automation"):
+
     logger = logging.getLogger(name)
+
+    # Prevent duplicate handlers
+    if logger.handlers:
+        return logger
+
     logger.setLevel(logging.INFO)
 
-    # Avoid duplicate handlers
-    if not logger.handlers:
-        # Create logs directory if not exists
-        os.makedirs("logs", exist_ok=True)
-        # Worker ID from pytest-xdist
-        worker_id = os.getenv("PYTEST_XDIST_WORKER", "worker0")
+    # Create logs directory
+    os.makedirs("logs", exist_ok=True)
 
-        # Timestamp for unique log file
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # Get pytest-xdist worker id
+    worker_id = os.getenv("PYTEST_XDIST_WORKER", "master")
 
-        log_file = f"logs/test_{worker_id}_{timestamp}.log"
+    # Log file name
+    log_file = f"logs/test_run_{worker_id}_{RUN_TIMESTAMP}.log"
 
-        file_handler = logging.FileHandler(log_file)
-        formatter = logging.Formatter(
-            "%(asctime)s | %(levelname)-5s | %(filename)s:%(lineno)d | %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S"
-        )
-        file_handler.setFormatter(formatter)
+    formatter = logging.Formatter(
+        "%(asctime)s | %(levelname)-5s | %(filename)s:%(lineno)d | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
 
-        console_handler = logging.StreamHandler()
-        console_handler.setFormatter(formatter)
+    # File Handler
+    file_handler = logging.FileHandler(
+        log_file,
+        mode="a",
+        encoding="utf-8"
+    )
+    file_handler.setFormatter(formatter)
 
-        logger.addHandler(file_handler)
-        logger.addHandler(console_handler)
+    # Console Handler
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
 
     return logger
+
+
