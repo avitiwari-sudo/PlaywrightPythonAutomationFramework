@@ -46,7 +46,7 @@ jobs:
 
     # 5. Run tests in parallel (HUGE speed boost)
     - name: Run Tests
-      run: pytest -n auto
+      run: pytest -n 2
 
     # 6. Upload reports
     - name: Upload Allure Results
